@@ -11,14 +11,14 @@ class Game:
         return item == self.model1 or item == self.model2
 
     def get_looser(self) -> Union[str, None]:
-        if self.selected == 'tie' or self.selected == "both_bad":  # Done fixing
+        if self.selected == 'tie':
             return None
         if self.selected == self.model1:
             return self.model2
         return self.model1
 
     def get_winner(self) -> Union[str, None]:
-        if self.selected == 'tie' or self.selected == "both_bad": # Done fixing
+        if self.selected == 'tie':
             return None
         return self.selected
 
