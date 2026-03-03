@@ -66,8 +66,10 @@ class Ranking(ABC):
             return 1
         elif winner == model2:
             return 0
-        elif winner == 'tie':
+        elif winner == 'tie':  # Fix
             return 0.5
+        elif winner == 'both_bad':
+            return 0
         else:
             raise ValueError('Invalid winner')
 
@@ -76,8 +78,8 @@ class Ranking(ABC):
             games = self.data
 
         total = 0
-        for game in games:
-            if game.selected == 'tie' and not include_ties:
+        for game in games: # Fix 
+            if (game.selected == 'tie' or game.selected == 'both_bad') and not include_ties:
                 continue
             total += self.log_loss(game.model1, game.model2, game.selected)
         return total / len(self.data)
